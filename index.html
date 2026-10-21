@@ -1,381 +1,378 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HEDON — Продукции и артисти</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              gold: '#F59E0B',
-              amber: '#D97706',
-              dark: '#0f172a',
-              slate: '#1e293b',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap');
-    
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
-    
-    .hero-gradient {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    }
-    
-    .gold-glow {
-      text-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(245, 158, 11, 0.3);
-    }
-    
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(245, 158, 11, 0.2);
-    }
-    
-    .artist-img {
-      transition: transform 0.5s ease;
-    }
-    .artist-card:hover .artist-img {
-      transform: scale(1.05);
-    }
-    
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: revealUp 0.8s forwards;
-    }
-    @keyframes revealUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEDON — Продукции</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --amber:#F59E0B; --green:#10B981; --slate:#1F2937; --muted:#6B7280; --bg:#0B1220; --card:#111827; --border:#1F2937; --red:#EF4444; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Inter", sans-serif; background: var(--bg); color: #e2e8f0; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { display: flex; align-items: center; justify-content: space-between; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 22px; margin-bottom: 20px; }
+        .brand { font-family: "Playfair Display", serif; font-weight: 900; font-size: 26px; color: var(--amber); letter-spacing: -0.02em; }
+        .brand span { color: #fff; }
+        .tagline { font-size: 13px; color: var(--muted); margin-top: 4px; font-style: italic; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .card h3 { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+        .card .value { font-size: 22px; font-weight: 800; color: #fff; }
+        .section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 18px; }
+        .section h2 { font-family: "Playfair Display", serif; font-size: 22px; font-weight: 700; color: var(--amber); margin-bottom: 14px; letter-spacing: -0.01em; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .pools { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .artist { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: #1a2332; display: flex; gap: 14px; align-items: flex-start; }
+        .artist .name { font-size: 14px; font-weight: 700; color: #fff; }
+        .artist .meta { font-size: 13px; color: var(--amber); margin-top: 4px; font-weight: 600; }
+        .artist .desc { font-size: 13px; color: #94a3b8; margin-top: 6px; line-height: 1.5; }
+        .artist .avatar { width: 72px; height: 72px; border-radius: 12px; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border); }
+        .artist .body { flex: 1; }
+        .media { margin-top: 10px; }
+        .media img, .media video { max-width: 100%; border-radius: 10px; border: 1px solid var(--border); }
+        .caption { font-size: 11px; color: var(--muted); margin-top: 4px; }
+        .cta { background: linear-gradient(135deg, #0f172a, #1e293b); border: 1px solid var(--amber); border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .cta a { color: var(--amber); text-decoration: none; font-weight: 600; font-size: 14px; }
+        .split-card { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #1a2332; }
+        .split-card .visual { min-height: 220px; background: #000; }
+        .split-card .visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .split-card .text-block { background: linear-gradient(135deg, #0f172a, #1e293b); color: #fff; padding: 18px; display: flex; flex-direction: column; justify-content: center; }
+        .split-card .text-block .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber); margin-bottom: 8px; font-weight: 700; }
+        .split-card .text-block h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .split-card .text-block p { font-size: 12px; color: #cbd5e1; margin-bottom: 10px; line-height: 1.5; }
+        .split-card .text-block ul { list-style: none; padding: 0; margin: 0; }
+        .split-card .text-block ul li { font-size: 12px; color: #e2e8f0; padding: 5px 0; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 8px; }
+        .split-card .text-block ul li:last-child { border-bottom: none; }
+        .split-card .text-block ul li::before { content: "★"; color: var(--amber); font-size: 10px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+        .gallery-grid .thumb { cursor: pointer; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #1a2332; }
+        .gallery-grid .thumb img { width: 100%; height: 140px; object-fit: cover; display: block; }
+        .gallery-grid .thumb .cap { padding: 8px; font-size: 11px; color: var(--muted); text-align: center; }
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 95vw; max-height: 85vh; border-radius: 12px; }
+        .lightbox video { max-width: 95vw; max-height: 85vh; border-radius: 12px; }
+        .lightbox .close { position: absolute; top: 16px; right: 20px; color: #fff; font-size: 32px; cursor: pointer; font-weight: 700; }
+        .lightbox .caption-lb { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,0.7); padding: 8px 16px; border-radius: 999px; font-size: 13px; }
+        .contact-card { background: linear-gradient(135deg, #0f172a, #1e293b); border: 1px solid var(--amber); border-radius: 14px; padding: 20px; }
+        .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .contact-item .icon { font-size: 20px; }
+        .contact-item .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+        .contact-item .value { font-size: 15px; color: #fff; font-weight: 600; }
+        .ticket-box { background: linear-gradient(135deg, #0f172a, #1e293b); border: 1px solid var(--amber); border-radius: 14px; padding: 16px; margin-top: 10px; }
+        .ticket-box h4 { color: var(--amber); font-size: 14px; margin-bottom: 8px; }
+        .ticket-box p { font-size: 13px; color: #cbd5e1; line-height: 1.6; }
+        .ticket-box a { color: var(--amber); text-decoration: none; font-weight: 600; }
+        .about-text { font-size: 14px; color: #94a3b8; line-height: 1.7; }
+        .about-text strong { color: #fff; }
+        @media (max-width: 900px) { .stats { grid-template-columns: 1fr 1fr; } .grid-2 { grid-template-columns: 1fr; } .split-card { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
+    </style>
 </head>
-<body class="bg-brand-dark text-white">
-
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-gold/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <div class="flex items-center space-x-2">
-          <div class="w-10 h-10 bg-gradient-to-br from-brand-gold to-brand-amber rounded-lg flex items-center justify-center">
-            <span class="text-brand-dark font-bold text-xl brand-font">H</span>
-          </div>
-          <span class="text-brand-gold font-bold text-2xl brand-font">HEDON</span>
-        </div>
-        <div class="hidden md:flex space-x-8">
-          <a href="#artists" class="text-gray-300 hover:text-brand-gold transition">Артисти</a>
-          <a href="#services" class="text-gray-300 hover:text-brand-gold transition">Услуги</a>
-          <a href="#program" class="text-gray-300 hover:text-brand-gold transition">Програма</a>
-          <a href="#contact" class="text-gray-300 hover:text-brand-gold transition">Контакти</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-    <div class="absolute inset-0 opacity-20">
-      <img src="media/slide_cover.png" alt="" class="w-full h-full object-cover">
-    </div>
-    <div class="relative z-10 text-center px-4">
-      <h1 class="text-6xl md:text-8xl font-black text-brand-gold gold-glow brand-font mb-6">
-        HEDON
-      </h1>
-      <p class="text-2xl md:text-3xl text-gray-300 mb-4">Продукции</p>
-      <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-        Където магията и смехът оживяват. Невероятни преживявания за всяко събитие.
-      </p>
-      <a href="#artists" class="inline-block bg-gradient-to-r from-brand-gold to-brand-amber text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition shadow-lg shadow-brand-gold/50">
-        Разкрий талантите
-      </a>
-    </div>
-  </section>
-
-  <!-- Artists Section -->
-  <section id="artists" class="py-20 bg-brand-slate">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Нашите артисти</h2>
-      <p class="text-center text-gray-400 mb-16 text-lg">Талантливи изпълнители от България и чужбина</p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_niki.jpg" alt="Ники" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">Ники</h3>
-            <p class="text-brand-amber font-semibold mb-3">Детски / Семейни програми</p>
-            <p class="text-gray-400">Изкуство за най-малките. Представления за детски градини, училища и градски празници.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_zain.jpg" alt="Зайн" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">Зайн (Йордан Янев)</h3>
-            <p class="text-brand-amber font-semibold mb-3">Илюзионист / Мащабни илюзии</p>
-            <p class="text-gray-400">Познат с мащабни илюзии, сценично присъствие и авторски трикове.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_nencho.jpg" alt="Ненчо" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">Ненчо Илчев</h3>
-            <p class="text-brand-amber font-semibold mb-3">Илюзионно изкуство / Комедийни магии</p>
-            <p class="text-gray-400">Сценична харизма и авторски комедийни магии, които ангажират публиката на живо.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_paskal.jpg" alt="Паскал" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">Паскал Паскалев</h3>
-            <p class="text-brand-amber font-semibold mb-3">Сценична подготовка / Циркови елементи</p>
-            <p class="text-gray-400">Допринася за динамиката, визуалната сила и цирковите елементи на представленията.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_mario.jpg" alt="Magic Mario" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">MAGIC МАРИО</h3>
-            <p class="text-brand-amber font-semibold mb-3">Творчески илюзионист / Динамични трикове</p>
-            <p class="text-gray-400">Творчески илюзионист с динамични и съвременни трикове, които грабват аудиторията.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_karolina.jpg" alt="Karolina" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">Karolina Gajewska</h3>
-            <p class="text-brand-amber font-semibold mb-3">Aerial Hoop / Lyra</p>
-            <p class="text-gray-400">Въздушна халка и lyra изкуство. Гъвкавост, сила и грация на височина.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_lobzik.jpg" alt="LOBZIK" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">LOBZIK</h3>
-            <p class="text-brand-amber font-semibold mb-3">Клоун / Комедия</p>
-            <p class="text-gray-400">Енергичен клоун с акробатични елементи и хумористични номера.</p>
-          </div>
-        </div>
-
-        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
-          <div class="overflow-hidden">
-            <img src="media/artist_popova.jpg" alt="Popova" class="artist-img w-full h-80 object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-brand-gold mb-2">Popova</h3>
-            <p class="text-brand-amber font-semibold mb-3">Aerial Hoop / Lyra</p>
-            <p class="text-gray-400">Въздушна халка и циркови елементи. Динамични и рисковани изпълнения.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="py-20 bg-brand-dark">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Услуги</h2>
-      <p class="text-center text-gray-400 mb-16 text-lg">Пълна гама от divertisment решения</p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
-          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
-            <span class="text-4xl">🎭</span>
-          </div>
-          <h3 class="text-2xl font-bold text-brand-gold mb-4">Завършване на детски градини и училища</h3>
-          <p class="text-gray-300">Вълшебни представления за най-малките. Цветни шоу програми, които остават в паметта завинаги.</p>
-        </div>
-
-        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
-          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
-            <span class="text-4xl">🎪</span>
-          </div>
-          <h3 class="text-2xl font-bold text-brand-gold mb-4">Коледни партита</h3>
-          <p class="text-gray-300">Магия и смях за празничното настроение. Идеално за корпоративни и семейни събития.</p>
-        </div>
-
-        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
-          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
-            <span class="text-4xl">🎉</span>
-          </div>
-          <h3 class="text-2xl font-bold text-brand-gold mb-4">Културни събития</h3>
-          <p class="text-gray-300">Професионални шоу програми за фестивали, общински събития и културни институции.</p>
-        </div>
-
-        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
-          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
-            <span class="text-4xl">🎂</span>
-          </div>
-          <h3 class="text-2xl font-bold text-brand-gold mb-4">Рождени дни и поводи</h3>
-          <p class="text-gray-300">Незабравими моменти за вашите близки. Индивидуални програми спрямо възрастта.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Program Section -->
-  <section id="program" class="py-20 bg-brand-slate">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Програма</h2>
-      <p class="text-center text-gray-400 mb-16 text-lg">Предстоящи спекакли и турнета</p>
-      
-      <div class="max-w-4xl mx-auto space-y-6">
-        
-        <div class="bg-brand-dark rounded-2xl p-8 border-l-4 border-brand-gold card-hover">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+<body>
+    <div class="container">
+        <header>
             <div>
-              <h3 class="text-3xl font-bold text-white mb-2 brand-font">Вълшебствата на Зайн</h3>
-              <p class="text-brand-gold text-lg mb-2">Илюзионист Йордан Янев</p>
-              <p class="text-gray-400">26 дати по страната</p>
+                <div class="brand">HEDON <span>Продукции</span></div>
+                <div class="tagline">Където магията и смехът оживяват. Невероятни преживявания за всяко събитие.</div>
             </div>
-            <a href="#contact" class="mt-4 md:mt-0 inline-block bg-brand-gold text-brand-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition">
-              Запази място
-            </a>
-          </div>
-        </div>
-
-        <div class="bg-brand-dark rounded-2xl p-8 border-l-4 border-brand-amber card-hover">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div>
-              <h3 class="text-3xl font-bold text-white mb-2 brand-font">Магическото шоу на Паскал Паскалев</h3>
-              <p class="text-brand-gold text-lg mb-2">Сценична магия и циркови елементи</p>
-              <p class="text-gray-400">23 дати по страната</p>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <a href="#program" style="background:var(--amber);color:#0f172a;padding:10px 20px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px;">Програма</a>
             </div>
-            <a href="#contact" class="mt-4 md:mt-0 inline-block bg-brand-gold text-brand-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition">
-              Запази място
-            </a>
-          </div>
+        </header>
+
+        <div class="stats">
+            <div class="card"><h3>🎭 Артисти</h3><div class="value">България + чужбина</div></div>
+            <div class="card"><h3>🌟 Турнета</h3><div class="value">Национални</div></div>
+            <div class="card"><h3>🤝 Партньори</h3><div class="value">Общини / зали</div></div>
+            <div class="card"><h3>✅ Статус</h3><div class="value" style="color:var(--green)">Active</div></div>
         </div>
 
-      </div>
+        <!-- За нас -->
+        <div class="section">
+            <h2>За нас</h2>
+            <div class="grid-2">
+                <div class="about-text">
+                    <p><strong>HEDON Продукции</strong> е водещ продуцент на професионални шоу програми в България.</p>
+                    <p style="margin-top:10px;">Спектаклите HEDON са адаптирани за всяка аудитория — от детски градини и училища до корпоративни събития и фестивали.</p>
+                    <p style="margin-top:10px;">Обхващаме голяма част от цирковото изкуство: илюзии, комедийни магии, циркови елементи, aerial перформанси и класически водевил.</p>
+                    <p style="margin-top:10px;">Екипът на HEDON — <strong>цялостно преживяване, от концепция до изпълнение.</strong></p>
+                </div>
+                <div class="about-text">
+                    <p style="margin-bottom:10px;"><strong>Как работим:</strong></p>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="padding:6px 0;border-bottom:1px solid #1e293b;">🤝 <strong>Партньорства</strong> — директни договори с общини, зали и хотели</li>
+                        <li style="padding:6px 0;border-bottom:1px solid #1e293b;">🎨 <strong>Промо</strong> — дизайн, видео, афиши, социални медии</li>
+                        <li style="padding:6px 0;border-bottom:1px solid #1e293b;">🚛 <strong>Логистика</strong> — дати, градове, турне дата, транспорт</li>
+                        <li style="padding:6px 0;"><strong>🎪 Продукция</strong> — шоу, сцена, реквизит, звук, светлини</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Артисти -->
+        <div class="section">
+            <h2>Артисти</h2>
+            <div class="pools">
+                <div class="artist">
+                    <img class="avatar" src="media/artist_niki.jpg" alt="Ники" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">Ники</div>
+                        <div class="meta">Детски / Семейни програми</div>
+                        <div class="desc">Изкуство за най-малките. Представления за детски градини, училища и градски празници.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_zain.jpg" alt="Зайн" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">Зайн (Йордан Янев)</div>
+                        <div class="meta">Илюзионист / Мащабни илюзии</div>
+                        <div class="desc">Познат с мащабни илюзии, сценично присъствие и авторски трикове. Награден с най-престижната награда за цялостно творчество.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_nencho.jpg" alt="Ненчо" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">Ненчо Илчев</div>
+                        <div class="meta">Илюзионно изкуство / Комедийни магии</div>
+                        <div class="desc">Сценична харизма и авторски комедийни магии, които ангажират публиката на живо.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_paskal.jpg" alt="Паскал" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">Паскал Паскалев</div>
+                        <div class="meta">Сценична подготовка / Циркови елементи</div>
+                        <div class="desc">Допринася за динамиката, визуалната сила и цирковите елементи на представленията.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_mario.jpg" alt="MAGIC МАРИО" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">MAGIC МАРИО</div>
+                        <div class="meta">Творчески илюзионист / Динамични трикове</div>
+                        <div class="desc">Творчески илюзионист с динамични и съвременни трикове, които грабват аудиторията.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_karolina.jpg" alt="Karolina" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">Karolina Gajewska</div>
+                        <div class="meta">Aerial Hoop / Lyra</div>
+                        <div class="desc">Въздушна халка и lyra изкуство. Гъвкавост, сила и грация на височина.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_lobzik.jpg" alt="LOBZIK" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">LOBZIK</div>
+                        <div class="meta">Клоун / Комедия</div>
+                        <div class="desc">Енергичен клоун с акробатични елементи и хумористични номера.</div>
+                    </div>
+                </div>
+                <div class="artist">
+                    <img class="avatar" src="media/artist_popova.jpg" alt="Popova" onerror="this.style.display='none'">
+                    <div class="body">
+                        <div class="name">Popova</div>
+                        <div class="meta">Aerial Hoop / Lyra</div>
+                        <div class="desc">Въздушна халка и циркови елементи. Динамични и рисковани изпълнения.</div>
+                    </div>
+                </div>
+                <div class="artist" style="background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid var(--amber);text-align:center;">
+                    <img src="media/slide_cover.png" alt="HEDON" onerror="this.style.display='none'" style="max-width:100%;height:auto;display:block;margin:0 auto;border-radius:10px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Програма -->
+        <div class="section" id="program">
+            <h2>Програма</h2>
+            <div class="pools">
+                <div class="artist" style="background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid var(--amber);">
+                    <div class="body" style="flex:1;">
+                        <div class="name" style="font-size:18px;">Вълшебствата на Зайн</div>
+                        <div class="meta">Илюзионист Йордан Янев</div>
+                        <div class="desc">26 дати по страната</div>
+                        <div class="ticket-box">
+                            <h4>🎟️ Билети</h4>
+                            <p>
+                                📍 <strong>На каса</strong> — закупете билети на място в залата<br>
+                                🌐 <strong>Онлайн</strong> — поръчайте лесно през <a href="https://epaygo.bg" target="_blank">EpayGo</a><br>
+                                📱 <strong>Facebook</strong> — <a href="https://www.facebook.com/SHOWHEDON" target="_blank">Според последните събития</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="artist" style="background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid #D97706;">
+                    <div class="body" style="flex:1;">
+                        <div class="name" style="font-size:18px;">Магическото шоу на Паскал Паскалев</div>
+                        <div class="meta">Сценична магия и циркови елементи</div>
+                        <div class="desc">23 дати по страната</div>
+                        <div class="ticket-box">
+                            <h4>🎟️ Билети</h4>
+                            <p>
+                                📍 <strong>На каса</strong> — закупете билети на място в залата<br>
+                                🌐 <strong>Онлайн</strong> — поръчайте лесно през <a href="https://epaygo.bg" target="_blank">EpayGo</a><br>
+                                📱 <strong>Facebook</strong> — <a href="https://www.facebook.com/SHOWHEDON" target="_blank">Според последните събития</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Галерия -->
+        <div class="section" id="gallery">
+            <h2>Галерия</h2>
+            <div class="gallery-grid">
+                <div class="thumb" onclick="openLightbox('media/slide_cover.png', 'Brand Cover')">
+                    <img src="media/slide_cover.png" alt="Brand Cover" onerror="this.style.display='none'">
+                    <div class="cap">Brand Cover</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/slide_concept.png', 'Концепция Circus on Stage')">
+                    <img src="media/slide_concept.png" alt="Концепция" onerror="this.style.display='none'">
+                    <div class="cap">Концепция</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/slide_experience.png', 'Матрица на преживяванията')">
+                    <img src="media/slide_experience.png" alt="Матрица" onerror="this.style.display='none'">
+                    <div class="cap">Матрица</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/slide_anatomy.png', 'Анатомия на спектакъла')">
+                    <img src="media/slide_anatomy.png" alt="Анатомия" onerror="this.style.display='none'">
+                    <div class="cap">Анатомия</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_zain.jpg', 'Зайн')">
+                    <img src="media/artist_zain.jpg" alt="Зайн" onerror="this.style.display='none'">
+                    <div class="cap">Зайн</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_niki.jpg', 'Ники')">
+                    <img src="media/artist_niki.jpg" alt="Ники" onerror="this.style.display='none'">
+                    <div class="cap">Ники</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_nencho.jpg', 'Ненчо')">
+                    <img src="media/artist_nencho.jpg" alt="Ненчо" onerror="this.style.display='none'">
+                    <div class="cap">Ненчо</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_paskal.jpg', 'Паскал')">
+                    <img src="media/artist_paskal.jpg" alt="Паскал" onerror="this.style.display='none'">
+                    <div class="cap">Паскал</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_mario.jpg', 'Magic Mario')">
+                    <img src="media/artist_mario.jpg" alt="Марио" onerror="this.style.display='none'">
+                    <div class="cap">Марио</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_karolina.jpg', 'Karolina')">
+                    <img src="media/artist_karolina.jpg" alt="Karolina" onerror="this.style.display='none'">
+                    <div class="cap">Karolina</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_lobzik.jpg', 'LOBZIK')">
+                    <img src="media/artist_lobzik.jpg" alt="LOBZIK" onerror="this.style.display='none'">
+                    <div class="cap">LOBZIK</div>
+                </div>
+                <div class="thumb" onclick="openLightbox('media/artist_popova.jpg', 'Popova')">
+                    <img src="media/artist_popova.jpg" alt="Popova" onerror="this.style.display='none'">
+                    <div class="cap">Popova</div>
+                </div>
+            </div>
+            <div style="margin-top:18px;">
+                <div class="split-card">
+                    <div class="visual">
+                        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;">
+                            <source src="media/zain_magic_show.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="text-block">
+                        <div class="label">🎬 Видео</div>
+                        <h3>Магията на Зайн</h3>
+                        <p>Официален шоу клип — илюзии, смях и магия на една сцена.</p>
+                        <ul>
+                            <li>HD качество</li>
+                            <li>Живи изпълнения</li>
+                            <li>Международни участия</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Контакти -->
+        <div class="section" id="contact">
+            <h2>Контакти</h2>
+            <div class="grid-2">
+                <div class="contact-card">
+                    <div class="contact-item">
+                        <div class="icon">📱</div>
+                        <div>
+                            <div class="label">Телефон</div>
+                            <div class="value">+359 87 786 99 65</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📧</div>
+                        <div>
+                            <div class="label">Имейл</div>
+                            <div class="value">magicshowhedon@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📍</div>
+                        <div>
+                            <div class="label">Локация</div>
+                            <div class="value">Пловдив, България</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cta">
+                    <div>
+                        <div style="font-weight:700;font-size:14px;color:#fff;">Готови за партньорство</div>
+                        <div style="font-size:12px;opacity:.85;color:#94a3b8;">Пишете ни: magicshowhedon@gmail.com</div>
+                    </div>
+                    <a href="mailto:magicshowhedon@gmail.com">✉ Изпрати имейл</a>
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align:center;padding:20px;color:#4b5563;font-size:12px;">
+            © 2026 <span style="color:var(--amber);font-weight:700;">HEDON</span> Продукции. Всички права запазени.
+        </footer>
     </div>
-  </section>
 
-  <!-- How We Work -->
-  <section class="py-20 bg-brand-dark">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Как работим</h2>
-      <p class="text-center text-gray-400 mb-16 text-lg">Партньорства и директни договори</p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
-          <div class="text-5xl mb-4">🤝</div>
-          <h3 class="text-xl font-bold text-brand-gold mb-2">Партньорства</h3>
-          <p class="text-gray-400 text-sm">Общини, зали, хотели</p>
-          <p class="text-gray-500 text-xs mt-2">Директни договори, видимост, споделени промо</p>
-        </div>
-
-        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
-          <div class="text-5xl mb-4">🎨</div>
-          <h3 class="text-xl font-bold text-brand-gold mb-2">Промо</h3>
-          <p class="text-gray-400 text-sm">Дизайн, видео, табла</p>
-          <p class="text-gray-500 text-xs mt-2">Афиши, социални медии, флайъри</p>
-        </div>
-
-        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
-          <div class="text-5xl mb-4">🚛</div>
-          <h3 class="text-xl font-bold text-brand-gold mb-2">Логистика</h3>
-          <p class="text-gray-400 text-sm">Дати, градове, превоз</p>
-          <p class="text-gray-500 text-xs mt-2">Сезонни графици, турне дата, транспорт</p>
-        </div>
-
-        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
-          <div class="text-5xl mb-4">🎪</div>
-          <h3 class="text-xl font-bold text-brand-gold mb-2">Продукция</h3>
-          <p class="text-gray-400 text-sm">Шоу, сцена, реквизит</p>
-          <p class="text-gray-500 text-xs mt-2">Звук, светлини, пълна подготовка</p>
-        </div>
-
-      </div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="close" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <video id="lightbox-video" controls style="display:none;"></video>
+        <div class="caption-lb" id="lightbox-caption"></div>
     </div>
-  </section>
 
-  <!-- Gallery -->
-  <section class="py-20 bg-brand-slate">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-5xl font-bold text-center text-brand-gold mb-16 brand-font">Галерия</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 card-hover">
-          <img src="media/slide_concept.png" alt="Концепция Circus on Stage" class="w-full h-64 object-cover">
-        </div>
-        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 card-hover">
-          <img src="media/slide_experience.png" alt="Матрица на преживяванията" class="w-full h-64 object-cover">
-        </div>
-        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 card-hover">
-          <img src="media/slide_anatomy.png" alt="Анатомия на спектакъла" class="w-full h-64 object-cover">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact / CTA -->
-  <section id="contact" class="py-20 bg-gradient-to-b from-brand-dark to-brand-slate">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-5xl font-bold text-brand-gold mb-6 brand-font">Готови за шоу?</h2>
-      <p class="text-xl text-gray-300 mb-8">Свържете се с нас и създайте нещо магично заедно.</p>
-      
-      <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 max-w-md mx-auto">
-        <div class="text-left space-y-4">
-          <div>
-            <p class="text-brand-gold font-semibold mb-1">📧 Имейл</p>
-            <p class="text-gray-300">info@hedonproductions.bg</p>
-          </div>
-          <div>
-            <p class="text-brand-gold font-semibold mb-1">📱 Телефон</p>
-            <p class="text-gray-300">+359 888 123 456</p>
-          </div>
-          <div>
-            <p class="text-brand-gold font-semibold mb-1">📍 Локация</p>
-            <p class="text-gray-300">София, България</p>
-          </div>
-        </div>
-        <a href="mailto:info@hedonproductions.bg" class="mt-8 block w-full bg-gradient-to-r from-brand-gold to-brand-amber text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition shadow-lg">
-          Свържете се с нас
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-brand-dark border-t border-brand-gold/20 py-8">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <p class="text-gray-500">© 2026 <span class="text-brand-gold font-bold">HEDON</span> Продукции. Всички права запазени.</p>
-    </div>
-  </footer>
-
+    <script>
+    function openLightbox(src, caption, isVideo) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        const video = document.getElementById('lightbox-video');
+        const cap = document.getElementById('lightbox-caption');
+        if (isVideo) {
+            img.style.display = 'none';
+            video.style.display = 'block';
+            video.src = src;
+            video.play();
+        } else {
+            img.style.display = 'block';
+            video.style.display = 'none';
+            video.pause();
+            img.src = src;
+        }
+        cap.textContent = caption;
+        lb.classList.add('active');
+    }
+    function closeLightbox(e) {
+        if (e.target.id === 'lightbox' || e.target.classList.contains('close') || e.target.id === 'lightbox-img') {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+        }
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.getElementById('lightbox-video').pause(); } });
+    </script>
 </body>
 </html>
