@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEDON — Продукции и артисти</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              amber: '#D97706',
+              dark: '#0f172a',
+              slate: '#1e293b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    }
+    
+    .gold-glow {
+      text-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(245, 158, 11, 0.3);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(245, 158, 11, 0.2);
+    }
+    
+    .artist-img {
+      transition: transform 0.5s ease;
+    }
+    .artist-card:hover .artist-img {
+      transform: scale(1.05);
+    }
+    
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 0.8s forwards;
+    }
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-white">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-gradient-to-br from-brand-gold to-brand-amber rounded-lg flex items-center justify-center">
+            <span class="text-brand-dark font-bold text-xl brand-font">H</span>
+          </div>
+          <span class="text-brand-gold font-bold text-2xl brand-font">HEDON</span>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#artists" class="text-gray-300 hover:text-brand-gold transition">Артисти</a>
+          <a href="#services" class="text-gray-300 hover:text-brand-gold transition">Услуги</a>
+          <a href="#program" class="text-gray-300 hover:text-brand-gold transition">Програма</a>
+          <a href="#contact" class="text-gray-300 hover:text-brand-gold transition">Контакти</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <div class="absolute inset-0 opacity-20">
+      <img src="media/slide_cover.png" alt="" class="w-full h-full object-cover">
+    </div>
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-6xl md:text-8xl font-black text-brand-gold gold-glow brand-font mb-6">
+        HEDON
+      </h1>
+      <p class="text-2xl md:text-3xl text-gray-300 mb-4">Продукции</p>
+      <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+        Където магията и смехът оживяват. Невероятни преживявания за всяко събитие.
+      </p>
+      <a href="#artists" class="inline-block bg-gradient-to-r from-brand-gold to-brand-amber text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition shadow-lg shadow-brand-gold/50">
+        Разкрий талантите
+      </a>
+    </div>
+  </section>
+
+  <!-- Artists Section -->
+  <section id="artists" class="py-20 bg-brand-slate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Нашите артисти</h2>
+      <p class="text-center text-gray-400 mb-16 text-lg">Талантливи изпълнители от България и чужбина</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_niki.jpg" alt="Ники" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">Ники</h3>
+            <p class="text-brand-amber font-semibold mb-3">Детски / Семейни програми</p>
+            <p class="text-gray-400">Изкуство за най-малките. Представления за детски градини, училища и градски празници.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_zain.jpg" alt="Зайн" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">Зайн (Йордан Янев)</h3>
+            <p class="text-brand-amber font-semibold mb-3">Илюзионист / Мащабни илюзии</p>
+            <p class="text-gray-400">Познат с мащабни илюзии, сценично присъствие и авторски трикове.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_nencho.jpg" alt="Ненчо" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">Ненчо Илчев</h3>
+            <p class="text-brand-amber font-semibold mb-3">Илюзионно изкуство / Комедийни магии</p>
+            <p class="text-gray-400">Сценична харизма и авторски комедийни магии, които ангажират публиката на живо.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_paskal.jpg" alt="Паскал" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">Паскал Паскалев</h3>
+            <p class="text-brand-amber font-semibold mb-3">Сценична подготовка / Циркови елементи</p>
+            <p class="text-gray-400">Допринася за динамиката, визуалната сила и цирковите елементи на представленията.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_mario.jpg" alt="Magic Mario" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">MAGIC МАРИО</h3>
+            <p class="text-brand-amber font-semibold mb-3">Творчески илюзионист / Динамични трикове</p>
+            <p class="text-gray-400">Творчески илюзионист с динамични и съвременни трикове, които грабват аудиторията.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_karolina.jpg" alt="Karolina" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">Karolina Gajewska</h3>
+            <p class="text-brand-amber font-semibold mb-3">Aerial Hoop / Lyra</p>
+            <p class="text-gray-400">Въздушна халка и lyra изкуство. Гъвкавост, сила и грация на височина.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_lobzik.jpg" alt="LOBZIK" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">LOBZIK</h3>
+            <p class="text-brand-amber font-semibold mb-3">Клоун / Комедия</p>
+            <p class="text-gray-400">Енергичен клоун с акробатични елементи и хумористични номера.</p>
+          </div>
+        </div>
+
+        <div class="artist-card bg-brand-dark rounded-2xl overflow-hidden card-hover border border-brand-gold/20">
+          <div class="overflow-hidden">
+            <img src="media/artist_popova.jpg" alt="Popova" class="artist-img w-full h-80 object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-brand-gold mb-2">Popova</h3>
+            <p class="text-brand-amber font-semibold mb-3">Aerial Hoop / Lyra</p>
+            <p class="text-gray-400">Въздушна халка и циркови елементи. Динамични и рисковани изпълнения.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Услуги</h2>
+      <p class="text-center text-gray-400 mb-16 text-lg">Пълна гама от divertisment решения</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
+          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
+            <span class="text-4xl">🎭</span>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-gold mb-4">Завършване на детски градини и училища</h3>
+          <p class="text-gray-300">Вълшебни представления за най-малките. Цветни шоу програми, които остават в паметта завинаги.</p>
+        </div>
+
+        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
+          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
+            <span class="text-4xl">🎪</span>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-gold mb-4">Коледни партита</h3>
+          <p class="text-gray-300">Магия и смях за празничното настроение. Идеално за корпоративни и семейни събития.</p>
+        </div>
+
+        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
+          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
+            <span class="text-4xl">🎉</span>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-gold mb-4">Културни събития</h3>
+          <p class="text-gray-300">Професионални шоу програми за фестивали, общински събития и културни институции.</p>
+        </div>
+
+        <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 card-hover">
+          <div class="w-16 h-16 bg-brand-gold/20 rounded-xl flex items-center justify-center mb-6">
+            <span class="text-4xl">🎂</span>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-gold mb-4">Рождени дни и поводи</h3>
+          <p class="text-gray-300">Незабравими моменти за вашите близки. Индивидуални програми спрямо възрастта.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Section -->
+  <section id="program" class="py-20 bg-brand-slate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Програма</h2>
+      <p class="text-center text-gray-400 mb-16 text-lg">Предстоящи спекакли и турнета</p>
+      
+      <div class="max-w-4xl mx-auto space-y-6">
+        
+        <div class="bg-brand-dark rounded-2xl p-8 border-l-4 border-brand-gold card-hover">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 class="text-3xl font-bold text-white mb-2 brand-font">Вълшебствата на Зайн</h3>
+              <p class="text-brand-gold text-lg mb-2">Илюзионист Йордан Янев</p>
+              <p class="text-gray-400">26 дати по страната</p>
+            </div>
+            <a href="#contact" class="mt-4 md:mt-0 inline-block bg-brand-gold text-brand-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition">
+              Запази място
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-brand-dark rounded-2xl p-8 border-l-4 border-brand-amber card-hover">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 class="text-3xl font-bold text-white mb-2 brand-font">Магическото шоу на Паскал Паскалев</h3>
+              <p class="text-brand-gold text-lg mb-2">Сценична магия и циркови елементи</p>
+              <p class="text-gray-400">23 дати по страната</p>
+            </div>
+            <a href="#contact" class="mt-4 md:mt-0 inline-block bg-brand-gold text-brand-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition">
+              Запази място
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="py-20 bg-brand-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-brand-gold mb-4 brand-font">Как работим</h2>
+      <p class="text-center text-gray-400 mb-16 text-lg">Партньорства и директни договори</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
+          <div class="text-5xl mb-4">🤝</div>
+          <h3 class="text-xl font-bold text-brand-gold mb-2">Партньорства</h3>
+          <p class="text-gray-400 text-sm">Общини, зали, хотели</p>
+          <p class="text-gray-500 text-xs mt-2">Директни договори, видимост, споделени промо</p>
+        </div>
+
+        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
+          <div class="text-5xl mb-4">🎨</div>
+          <h3 class="text-xl font-bold text-brand-gold mb-2">Промо</h3>
+          <p class="text-gray-400 text-sm">Дизайн, видео, табла</p>
+          <p class="text-gray-500 text-xs mt-2">Афиши, социални медии, флайъри</p>
+        </div>
+
+        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
+          <div class="text-5xl mb-4">🚛</div>
+          <h3 class="text-xl font-bold text-brand-gold mb-2">Логистика</h3>
+          <p class="text-gray-400 text-sm">Дати, градове, превоз</p>
+          <p class="text-gray-500 text-xs mt-2">Сезонни графици, турне дата, транспорт</p>
+        </div>
+
+        <div class="bg-brand-slate rounded-xl p-6 text-center card-hover">
+          <div class="text-5xl mb-4">🎪</div>
+          <h3 class="text-xl font-bold text-brand-gold mb-2">Продукция</h3>
+          <p class="text-gray-400 text-sm">Шоу, сцена, реквизит</p>
+          <p class="text-gray-500 text-xs mt-2">Звук, светлини, пълна подготовка</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-20 bg-brand-slate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-brand-gold mb-16 brand-font">Галерия</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 card-hover">
+          <img src="media/slide_concept.png" alt="Концепция Circus on Stage" class="w-full h-64 object-cover">
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 card-hover">
+          <img src="media/slide_experience.png" alt="Матрица на преживяванията" class="w-full h-64 object-cover">
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 card-hover">
+          <img src="media/slide_anatomy.png" alt="Анатомия на спектакъла" class="w-full h-64 object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / CTA -->
+  <section id="contact" class="py-20 bg-gradient-to-b from-brand-dark to-brand-slate">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-5xl font-bold text-brand-gold mb-6 brand-font">Готови за шоу?</h2>
+      <p class="text-xl text-gray-300 mb-8">Свържете се с нас и създайте нещо магично заедно.</p>
+      
+      <div class="bg-brand-slate rounded-2xl p-8 border border-brand-gold/20 max-w-md mx-auto">
+        <div class="text-left space-y-4">
+          <div>
+            <p class="text-brand-gold font-semibold mb-1">📧 Имейл</p>
+            <p class="text-gray-300">info@hedonproductions.bg</p>
+          </div>
+          <div>
+            <p class="text-brand-gold font-semibold mb-1">📱 Телефон</p>
+            <p class="text-gray-300">+359 888 123 456</p>
+          </div>
+          <div>
+            <p class="text-brand-gold font-semibold mb-1">📍 Локация</p>
+            <p class="text-gray-300">София, България</p>
+          </div>
+        </div>
+        <a href="mailto:info@hedonproductions.bg" class="mt-8 block w-full bg-gradient-to-r from-brand-gold to-brand-amber text-brand-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition shadow-lg">
+          Свържете се с нас
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand-dark border-t border-brand-gold/20 py-8">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-gray-500">© 2026 <span class="text-brand-gold font-bold">HEDON</span> Продукции. Всички права запазени.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
