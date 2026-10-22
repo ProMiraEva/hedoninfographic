@@ -1,0 +1,111 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" href="media/hedon_logo.png" as="image" type="image/png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23F59E0B'/><text x='50' y='68' font-size='60' font-weight='bold' text-anchor='middle' fill='%230f172a' font-family='serif'>H</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="media/hedon_logo.png" alt="HEDON">
+                </div>
+                <nav>
+                    <a href="index.html">Начало</a>
+                    <a href="about.html">За нас</a>
+                    <a href="artists.html">Артисти</a>
+                    <a href="gallery.html">Галерия</a>
+                    <a href="program.html">Програма</a>
+                    <a href="contact.html">Контакти</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="media/hedon_logo.png" alt="HEDON">
+                </div>
+                <nav>
+                    <a href="index.html">Начало</a>
+                    <a href="about.html">За нас</a>
+                    <a href="artists.html">Артисти</a>
+                    <a href="gallery.html">Галерия</a>
+                    <a href="program.html">Програма</a>
+                    <a href="contact.html">Контакти</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Галерия</h1>
+            <p>Моменти от шоута</p>
+        </div>
+    </section>
+
+    <section id="gallery" style="background: var(--slate);">
+        <div class="container">
+            <div class="section-label">Галерия</div>
+            <div class="section-title">Снимки и видео</div>
+            <div style="text-align:center;padding:40px 20px;background:var(--card);border:1px dashed var(--border);border-radius:16px;color:var(--muted);">
+                <p style="font-size:16px;margin-bottom:8px;">📸 Снимки от шоута — скоро</p>
+                <p style="font-size:13px;">Моменти от репетиции и изпълнения</p>
+            </div>
+            <div style="margin-top:32px;">
+                <div class="video-card">
+                    <video controls preload="metadata">
+                        <source src="media/zain_magic_show.mp4" type="video/mp4">
+                    </video>
+                    <div class="cap">Магията на Зайн — официален шоу клип</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>© 2026 <span>HEDON</span> Продукции. Всички права запазени.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="close" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <video id="lightbox-video" controls style="display:none;"></video>
+        <div class="caption" id="lightbox-caption"></div>
+    </div>
+
+    <script>
+    function openLightbox(src, caption, isVideo) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        const video = document.getElementById('lightbox-video');
+        const cap = document.getElementById('lightbox-caption');
+        if (isVideo) {
+            img.style.display = 'none';
+            video.style.display = 'block';
+            video.src = src;
+            video.play();
+        } else {
+            img.style.display = 'block';
+            video.style.display = 'none';
+            video.pause();
+            img.src = src;
+        }
+        cap.textContent = caption;
+        lb.classList.add('active');
+    }
+    function closeLightbox(e) {
+        if (e.target.id === 'lightbox' || e.target.classList.contains('close') || e.target.id === 'lightbox-img') {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-video').pause();
+        }
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.getElementById('lightbox-video').pause(); } });
+    </script>
+</body>
+</html>
