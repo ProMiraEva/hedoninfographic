@@ -37,10 +37,33 @@
     <section id="gallery" style="background: var(--slate);">
         <div class="container">
             <div class="section-title">Снимки и видео</div>
-            <div style="text-align:center;padding:40px 20px;background:var(--card);border:1px dashed var(--border);border-radius:16px;color:var(--muted);">
-                <p style="font-size:16px;margin-bottom:8px;">📸 Снимки от шоута — скоро</p>
-                <p style="font-size:13px;">Моменти от репетиции и изпълнения</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('media/gallery_performers.jpg', 'HEDON performers', false)">
+                    <img src="media/gallery_performers.jpg" alt="HEDON performers" loading="lazy">
+                    <div class="cap">HEDON performers</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('media/gallery_hall.jpg', 'Зал с публика', false)">
+                    <img src="media/gallery_hall.jpg" alt="Зал с публика" loading="lazy">
+                    <div class="cap">Зал с публика</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('media/gallery_stage.jpg', 'Сценично изпълнение', false)">
+                    <img src="media/gallery_stage.jpg" alt="Сценично изпълнение" loading="lazy">
+                    <div class="cap">Сценично изпълнение</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('media/gallery_hall_back.jpg', 'Заден план на залата', false)">
+                    <img src="media/gallery_hall_back.jpg" alt="Заден план на залата" loading="lazy">
+                    <div class="cap">Заден план на залата</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('media/gallery_audience.jpg', 'Публика на представление', false)">
+                    <img src="media/gallery_audience.jpg" alt="Публика на представление" loading="lazy">
+                    <div class="cap">Публика на представление</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('media/gallery_mascot.jpg', 'Маскоти', false)">
+                    <img src="media/gallery_mascot.jpg" alt="Маскоти" loading="lazy">
+                    <div class="cap">Маскоти</div>
+                </div>
             </div>
+            <div style="margin-top: 32px;">
             <div style="margin-top:32px;">
                 <div class="video-card">
                     <video controls preload="metadata">
