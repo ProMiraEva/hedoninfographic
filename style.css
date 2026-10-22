@@ -17,8 +17,7 @@ header { background: rgba(11,18,32,0.95); backdrop-filter: blur(20px); border-bo
 nav { display: flex; gap: 32px; }
 nav a { color: #0B1220; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
 nav a:hover, nav a.active { color: #5ce1e6; }
-.about-page nav a { color: #fff; }
-.about-page nav a:hover, .about-page nav a.active { color: #5ce1e6; }
+nav a { color: #fff; }
 
 /* Hero */
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
