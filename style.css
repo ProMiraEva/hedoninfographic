@@ -7,15 +7,6 @@ body { font-family: "Inter", sans-serif; background: var(--bg); color: #e2e8f0; 
 a { color: var(--amber); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* Home Header - Big, Bold, Centered */
-.home-header { background: linear-gradient(180deg, rgba(11,18,32,0.98), rgba(11,18,32,0.9)); border-bottom: 2px solid var(--amber); padding: 32px 0; position: relative; }
-.home-header::after { content: ""; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--amber), transparent); }
-.home-header .header-inner { flex-direction: column; align-items: center; gap: 24px; height: auto; }
-.home-header .logo img { height: 80px; width: auto; filter: drop-shadow(0 4px 12px rgba(245,158,11,0.3)); }
-.home-header nav { gap: 40px; }
-.home-header nav a { color: #e2e8f0; font-size: 16px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-.home-header nav a:hover { color: var(--amber); transform: translateY(-2px); }
-
 /* Inner Header - Compact, Sticky */
 header { background: rgba(11,18,32,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
