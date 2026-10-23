@@ -14,6 +14,12 @@
                 <div class="logo">
                     <img src="media/hedon_logo.png" alt="HEDON">
                 </div>
+
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <nav>
                     <a href="index.html">Начало</a>
                     <a href="about.html">За нас</a>
@@ -179,6 +185,20 @@
         }
     }
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.getElementById('lightbox-video').pause(); } });
+
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('nav');
+        const hamburger = document.querySelector('.hamburger');
+        if (nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+            nav.classList.remove('active');
+        }
+    });
     </script>
 </body>
 </html>
