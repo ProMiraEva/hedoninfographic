@@ -186,8 +186,3 @@ footer span { color: var(--purple); font-weight: 700; }
     
     .video-card iframe { height: 200px; }
 }
-
-    .about-grid, .contact-grid, .program-grid { grid-template-columns: 1fr; }
-    nav { display: none; }
-    .artists-grid { grid-template-columns: 1fr; }
-}
