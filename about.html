@@ -226,12 +226,30 @@
         }
     });
 
+
     // Background music with first-click unlock
     (function() {
         const audio = document.getElementById('bg-music');
         const btn = document.getElementById('audio-toggle');
         const icon = document.getElementById('audio-icon');
         if (!audio || !btn) return;
+        
+        const tracks = [
+            'media/audio_track_1.mp3',
+            'media/audio_track_2.mp3'
+        ];
+        let currentTrack = 0;
+        
+        function loadTrack(index) {
+            audio.src = tracks[index];
+        }
+        
+        // Auto-advance to next track when current ends
+        audio.addEventListener('ended', function() {
+            currentTrack = (currentTrack + 1) % tracks.length;
+            loadTrack(currentTrack);
+            audio.play();
+        });
         
         // Try to resume on any click (browsers block audio until user interaction)
         function tryPlay() {
@@ -263,8 +281,11 @@
                 icon.textContent = '🔇';
             }
         };
+        
+        // Load first track
+        loadTrack(0);
     })();
-    </script>
+
 </body>
 <!-- cache bust -->
 </html>
