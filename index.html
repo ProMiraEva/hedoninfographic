@@ -266,12 +266,19 @@
         
         // Manual toggle
         window.toggleAudio = function() {
+            console.log('toggleAudio called, paused:', audio.paused);
             if (audio.paused) {
-                audio.play();
-                icon.textContent = '🔊';
+                audio.play().then(() => {
+                    icon.textContent = '🔊';
+                    btn.style.color = '#5ce1e6';
+                }).catch(err => {
+                    console.log('Play failed:', err);
+                    icon.textContent = '🔇';
+                });
             } else {
                 audio.pause();
                 icon.textContent = '🔇';
+                btn.style.color = '#fff';
             }
         };
         
