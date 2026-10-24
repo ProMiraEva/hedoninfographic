@@ -203,10 +203,14 @@
     <script>
     // Auto-update event statuses based on current date
     function updateEventStatuses() {
+        console.log('updateEventStatuses called');
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         
-        document.querySelectorAll('tr').forEach(row => {
+        const rows = document.querySelectorAll('tr');
+        console.log('Found rows:', rows.length);
+        
+        rows.forEach(row => {
             const dateCell = row.querySelector('td[data-date]');
             const statusCell = row.querySelector('.status-cell');
             
@@ -234,7 +238,11 @@
     }
     
     // Run on page load
-    updateEventStatuses();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateEventStatuses);
+    } else {
+        updateEventStatuses();
+    }
     </script>
 </body>
 </html>
