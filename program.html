@@ -250,11 +250,41 @@
     }
     
 
+    // Audio toggle - global scope so onclick works
+    let audio, btn, icon;
+    function toggleAudio() {
+        if (!audio) {
+            audio = document.getElementById('bg-music');
+        }
+        if (!btn) {
+            btn = document.getElementById('audio-toggle');
+        }
+        if (!icon) {
+            icon = document.getElementById('audio-icon');
+        }
+        if (!audio || !btn) return;
+        
+        console.log('toggleAudio called, paused:', audio.paused);
+        if (audio.paused) {
+            audio.play().then(() => {
+                icon.textContent = '🔊';
+                btn.style.color = '#5ce1e6';
+            }).catch(err => {
+                console.log('Play failed:', err);
+                icon.textContent = '🔇';
+            });
+        } else {
+            audio.pause();
+            icon.textContent = '🔇';
+            btn.style.color = '#fff';
+        }
+    }
+    
     // Background music with first-click unlock
     (function() {
-        const audio = document.getElementById('bg-music');
-        const btn = document.getElementById('audio-toggle');
-        const icon = document.getElementById('audio-icon');
+        audio = document.getElementById('bg-music');
+        btn = document.getElementById('audio-toggle');
+        icon = document.getElementById('audio-icon');
         if (!audio || !btn) return;
         
         const tracks = [
@@ -293,24 +323,6 @@
                 document.removeEventListener('click', unlockAudio);
             }
         }, { once: false });
-        
-        // Manual toggle
-        window.toggleAudio = function() {
-            console.log('toggleAudio called, paused:', audio.paused);
-            if (audio.paused) {
-                audio.play().then(() => {
-                    icon.textContent = '🔊';
-                    btn.style.color = '#5ce1e6';
-                }).catch(err => {
-                    console.log('Play failed:', err);
-                    icon.textContent = '🔇';
-                });
-            } else {
-                audio.pause();
-                icon.textContent = '🔇';
-                btn.style.color = '#fff';
-            }
-        };
         
         // Load first track
         loadTrack(0);
